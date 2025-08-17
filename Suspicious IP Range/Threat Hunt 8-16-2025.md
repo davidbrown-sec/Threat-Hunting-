@@ -75,7 +75,7 @@ During advanced hunting, suspicious outbound connections were observed from mult
 ![VT result clean](images/vt_208-89-73-149.png)  
 *208.89.73.149 marked clean by vendors*
 
-![VT result flagged](images/vt_208-89-73-157.png)  
+![VT result flagged](https://github.com/davidbrown-sec/Threat-Hunting-/blob/4b583bb471a982ce4cbfd1d1d1c45cd10004682f/Suspicious%20IP%20Range/VirustotalResultNotClean.png)  
 *208.89.73.157 flagged as malicious by CRDF, suspicious by SOC Radar/Gridinsoft*
 
 ### Hunting Query Results

@@ -68,6 +68,29 @@ During advanced hunting, suspicious outbound connections were observed from mult
 - Expand hunting queries to include process details, accounts, URLs, and TI joins
 - Improve detection logic for `svchost.exe` network traffic anomalies
 
+
+## 📑 Supporting Evidence
+
+### VirusTotal Reputation
+![VT result clean](images/vt_208-89-73-149.png)  
+*208.89.73.149 marked clean by vendors*
+
+![VT result flagged](images/vt_208-89-73-157.png)  
+*208.89.73.157 flagged as malicious by CRDF, suspicious by SOC Radar/Gridinsoft*
+
+### Hunting Query Results
+![Connection logs](images/connection_table.png)  
+*Sample of raw hunting results showing failed and successful connections from 10.0.0.104 and 10.0.0.117*
+
+### Timeline of Activity
+![Graph view](images/connection_timeline.png)  
+*Visual representation of connection outcomes across time*
+
+### Aggregated Statistics
+![Summary stats](images/summary_table.png)  
+*Total connections, failures vs successes, distinct remote and local IPs*
+
+
 ---
 
 ## 🚩 Key Takeaways

@@ -1,2 +1,2 @@
-# Threat-Hunting-
+# Threat-Hunting
 Threat Hunting 

@@ -79,15 +79,15 @@ During advanced hunting, suspicious outbound connections were observed from mult
 *208.89.73.157 flagged as malicious by CRDF, suspicious by SOC Radar/Gridinsoft*
 
 ### Hunting Query Results
-![Connection logs](images/connection_table.png)  
+![Connection logs](https://github.com/davidbrown-sec/Threat-Hunting-/blob/e9b4891512474f4d60b9eae63dfe3649a87f956b/Suspicious%20IP%20Range/recentoccurancefound.png)  
 *Sample of raw hunting results showing failed and successful connections from 10.0.0.104 and 10.0.0.117*
 
 ### Timeline of Activity
-![Graph view](images/connection_timeline.png)  
+![Graph view](https://github.com/davidbrown-sec/Threat-Hunting-/blob/e9b4891512474f4d60b9eae63dfe3649a87f956b/Suspicious%20IP%20Range/timeline.png)
 *Visual representation of connection outcomes across time*
 
 ### Aggregated Statistics
-![Summary stats](images/summary_table.png)  
+![Summary stats](https://github.com/davidbrown-sec/Threat-Hunting-/blob/29b0839252cc76e2b311b750a848a27a85967515/Suspicious%20IP%20Range/statistics.png)
 *Total connections, failures vs successes, distinct remote and local IPs*
 
 

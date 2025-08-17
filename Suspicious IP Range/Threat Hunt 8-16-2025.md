@@ -72,7 +72,7 @@ During advanced hunting, suspicious outbound connections were observed from mult
 ## 📑 Supporting Evidence
 
 ### VirusTotal Reputation
-![VT result clean](images/vt_208-89-73-149.png](https://github.com/davidbrown-sec/Threat-Hunting-/blob/6d08e13b31dd8339dc59a7c62954730bb93e5030/Suspicious%20IP%20Range/Virustotalesultclean.png))
+![VT result clean](https://github.com/davidbrown-sec/Threat-Hunting-/blob/6d08e13b31dd8339dc59a7c62954730bb93e5030/Suspicious%20IP%20Range/Virustotalesultclean.png)
 *208.89.73.149 marked clean by vendors*
 
 ![VT result flagged](https://github.com/davidbrown-sec/Threat-Hunting-/blob/4b583bb471a982ce4cbfd1d1d1c45cd10004682f/Suspicious%20IP%20Range/VirustotalResultNotClean.png)  

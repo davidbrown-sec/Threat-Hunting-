@@ -3,15 +3,15 @@
 ## 📊 Summary of Findings
 During advanced hunting, suspicious outbound connections were observed from multiple internal hosts to a concentrated external IP block **208.89.73.[145–159]** over **port 80 (HTTP)**.
 
-- **Hosts Involved:** Multiple (`10.1.x.x` and `10.0.x.x` ranges)  
+- **Hosts Involved:** Multiple (`10.x.x.x` ranges)  
 - **Processes Observed:**
   - `svchost.exe` (parent: `services.exe`) → dominant, indicates possible malicious service or DLL injection
   - `msedgewebview2.exe` → potential abuse of Edge WebView runtime
   - `mpdefendercoreservice.exe` → single occurrence
 - **Accounts Involved:**
-  - `NETWORK SERVICE` (11 events)
-  - `SYSTEM` (10 events)
-  - User account `francis_philip` (8 events)
+  - `NETWORK SERVICE` (service account)
+  - `SYSTEM` (system context)
+  - User account `<User1>` (example: could represent a standard user)
 
 **Key Concern:** Numerous **successful HTTP connections** (`ConnectionSuccess`, `HttpConnectionInspected`, `ConnectionAcknowledged`) confirm **active C2 traffic**, not just blocked attempts.
 
@@ -26,7 +26,7 @@ During advanced hunting, suspicious outbound connections were observed from mult
 | **Privilege Escalation**| T1055 – Process Injection                                        | Likely injection into `svchost.exe` |
 | **Defense Evasion**     | T1218 – Signed Binary Proxy Execution (LOLBins)                  | Abuse of `msedgewebview2.exe` runtime |
 | **Command & Control**   | T1071.001 – Application Layer Protocol: Web (HTTP/S)             | Repeated HTTP beaconing to suspicious subnet |
-| **Discovery**           | T1018 – Remote System Discovery                                 | Internal probing of 10.x.x.x addresses in earlier datasets |
+| **Discovery**           | T1018 – Remote System Discovery                                 | Internal probing of private 10.x.x.x addresses in earlier datasets |
 | **Lateral Movement**    | T1021 – Remote Services                                         | Evidence of attempted internal connections |
 
 ---
@@ -51,8 +51,8 @@ During advanced hunting, suspicious outbound connections were observed from mult
 
 ### 3. Containment
 - Block **208.89.73.0/24** at network egress
-- Isolate affected devices (`10.1.0.161`, `10.1.0.105`, `10.1.0.58`, `10.1.0.133`, `10.1.0.73`, etc.)
-- Revoke credentials and sessions for user `francis_philip`
+- Isolate affected devices (e.g., `10.x.x.x` hosts seen in logs)
+- Revoke credentials and sessions for `<User1>` (compromised account)
 
 ### 4. Eradication
 - Remove malicious services or injected DLLs tied to `svchost.exe`
@@ -72,7 +72,7 @@ During advanced hunting, suspicious outbound connections were observed from mult
 ## 📑 Supporting Evidence
 
 ### VirusTotal Reputation
-![VT result clean](https://github.com/davidbrown-sec/Threat-Hunting-/blob/6d08e13b31dd8339dc59a7c62954730bb93e5030/Suspicious%20IP%20Range/Virustotalesultclean.png)
+![VT result clean](https://github.com/davidbrown-sec/Threat-Hunting-/blob/6d08e13b31dd8339dc59a7c62954730bb93e5030/Suspicious%20IP%20Range/Virustotalesultclean.png)  
 *208.89.73.149 marked clean by vendors*
 
 ![VT result flagged](https://github.com/davidbrown-sec/Threat-Hunting-/blob/4b583bb471a982ce4cbfd1d1d1c45cd10004682f/Suspicious%20IP%20Range/VirustotalResultNotClean.png)  
@@ -80,14 +80,14 @@ During advanced hunting, suspicious outbound connections were observed from mult
 
 ### Hunting Query Results
 ![Connection logs](https://github.com/davidbrown-sec/Threat-Hunting-/blob/e9b4891512474f4d60b9eae63dfe3649a87f956b/Suspicious%20IP%20Range/recentoccurancefound.png)  
-*Sample of raw hunting results showing failed and successful connections from 10.0.0.104 and 10.0.0.117*
+*Sample of raw hunting results showing failed and successful connections from internal hosts (`10.x.x.x`)*
 
 ### Timeline of Activity
-![Graph view](https://github.com/davidbrown-sec/Threat-Hunting-/blob/e9b4891512474f4d60b9eae63dfe3649a87f956b/Suspicious%20IP%20Range/timeline.png)
+![Graph view](https://github.com/davidbrown-sec/Threat-Hunting-/blob/e9b4891512474f4d60b9eae63dfe3649a87f956b/Suspicious%20IP%20Range/timeline.png)  
 *Visual representation of connection outcomes across time*
 
 ### Aggregated Statistics
-![Summary stats](https://github.com/davidbrown-sec/Threat-Hunting-/blob/29b0839252cc76e2b311b750a848a27a85967515/Suspicious%20IP%20Range/statistics.png)
+![Summary stats](https://github.com/davidbrown-sec/Threat-Hunting-/blob/29b0839252cc76e2b311b750a848a27a85967515/Suspicious%20IP%20Range/statistics.png)  
 *Total connections, failures vs successes, distinct remote and local IPs*
 
 
@@ -95,6 +95,6 @@ During advanced hunting, suspicious outbound connections were observed from mult
 
 ## 🚩 Key Takeaways
 - Multiple hosts beaconed successfully to an external IP range
-- Traffic originated from **SYSTEM and service contexts**, with at least one compromised user (user1)
+- Traffic originated from **SYSTEM and service contexts**, with at least one compromised user (`<User1>`)
 - Persistence likely achieved through **malicious service creation or process injection**
-- Immediate blocking, host isolation, and forensic triage are recommended
+- Immediate blocking, host isolation, and forensic triage are recommended.

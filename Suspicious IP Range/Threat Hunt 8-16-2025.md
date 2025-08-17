@@ -95,6 +95,6 @@ During advanced hunting, suspicious outbound connections were observed from mult
 
 ## 🚩 Key Takeaways
 - Multiple hosts beaconed successfully to an external IP range
-- Traffic originated from **SYSTEM and service contexts**, with at least one compromised user (`francis_philip`)
+- Traffic originated from **SYSTEM and service contexts**, with at least one compromised user (user1)
 - Persistence likely achieved through **malicious service creation or process injection**
 - Immediate blocking, host isolation, and forensic triage are recommended
